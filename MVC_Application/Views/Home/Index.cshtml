@@ -1,0 +1,46 @@
+﻿
+@model IEnumerable<MVC_Application.Models.Employee>
+<title>Index</title>
+<a href="/Account/Logout" class="float-lg-right border-danger alert-dark">Log Out</a>
+@using (Html.BeginForm("Index", "Home", FormMethod.Get))
+{
+    <table class="table">
+        <tr>
+            <td>
+                Employee Id
+            </td>
+            <td>
+                Employee Name
+            </td>
+            <td>
+                City
+            </td>
+            <td>
+                Action
+            </td>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.EmployeeId
+                </td>
+                <td>
+                    @item.EmployeeName
+                </td>
+                <td>
+                    @item.City
+                </td>
+                <td>
+                    @Html.ActionLink("Edit /", "Create", new { id = item.EmployeeId })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeId })
+                </td>
+            </tr>
+        }
+    </table>
+
+    <p>
+        @Html.ActionLink("Create New", "Create", "Home")
+    </p>
+}
